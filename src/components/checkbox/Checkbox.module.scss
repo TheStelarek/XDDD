@@ -1,0 +1,15 @@
+.checkbox {
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+	background: white;
+	border: 1px solid #e0e2ea;
+	margin-right: 4px;
+	border-radius: 4px;
+	clip: rect(0 0 0 0);
+}
+
+.checkboxactive {
+	border-color: var(--blue-0);
+	background: var(--blue-0);
+}
