@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/button/Button';
 import { AppRoute } from 'routing/AppRoute.enum';
+import Input from 'components/input/Input';
+import { ReactComponent as Shape } from '../../assets/icons/Shape.svg';
 
 export const Products = () => {
 	const [products, setProducts] = useState([]);
@@ -27,6 +29,7 @@ export const Products = () => {
 			<h2>Products page</h2>
 			<Link to={AppRoute.Login}> Login </Link>
 			<br />
+			<Input id={'XD'} label={'XD'} placeholder={'XD'} hasIcon={<Shape />} />
 		</>
 	);
 };
