@@ -12,8 +12,8 @@
 .rightBox {
 	display: flex;
 	flex-direction: column;
-	margin-left: 16px;
-	margin-right: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
 	width: 100%;
 	@media (min-width: 1200px) {
 		margin-left: 235px;
@@ -23,7 +23,6 @@
 .logo {
 	font-size: 24px;
 	color: var(--gray-400);
-	font-weight: 600;
 	margin-top: 52px;
 }
 
@@ -44,7 +43,6 @@
 	margin-top: 29px;
 	gap: 22px;
 	flex-direction: column;
-	width: 100%;
 	@media (min-width: 1200px) {
 		width: 496px;
 	}
