@@ -1,28 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-import { AppRoute } from 'routing/AppRoute.enum'
+import styles from './Login.module.scss';
+import login from '../../assets/images/login.png';
+import Input from '../../components/input/Input';
+import Button from '../../components/button/Button';
 
 export const Login = () => {
 	return (
-		<>
-			<Link to={AppRoute.Home}>Products page</Link>
-			<h2>Login</h2>
-			<form>
-				<div>
-					<label>
-						username:
-						<input name="username" />
-					</label>
+		<div className={styles.container}>
+			<img src={login} className={styles.image} />
+			<div className={styles.rightBox}>
+				<div className={styles.logo}>join.tsh.io</div>
+				<div className={styles.loginContainer}>
+					<span className={styles.title}>Login</span>
+					<div className={styles.loginForm}>
+						<Input label={'Username'} placeholder={'Enter username'} id={'Username'} />
+						<Input label={'Password'} placeholder={'Enter password'} type={'password'} id={'Password'} />
+					</div>
+					<div className={styles.button}>
+						<Button variant={'primary'} children={'Log in'} />
+					</div>
+					<div className={styles.forgotPassword}>Forgot password?</div>
 				</div>
-				<div>
-					<label>
-						password:
-						<input name="password" type="password" />
-					</label>
-				</div>
-				<button type="submit">submit</button>
-			</form>
-		</>
-	)
-}
+			</div>
+		</div>
+	);
+};
