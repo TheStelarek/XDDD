@@ -2,11 +2,15 @@ import { useState } from 'react';
 import styles from './Checkbox.module.scss';
 import cx from 'classnames';
 
-function Checkbox() {
+interface CheckboxProps {
+	children?: React.ReactNode;
+}
+
+const Checkbox: React.FC<CheckboxProps> = ({ children }) => {
 	const [isChecked, setIsChecked] = useState(false);
 
 	return (
-		<label>
+		<label className={styles.container}>
 			<input
 				type="checkbox"
 				hidden
@@ -22,9 +26,9 @@ function Checkbox() {
 			>
 				<path d="M1 4.5L5 9L13 0" strokeWidth="1.5" stroke={isChecked ? '#fff' : 'none'} />
 			</svg>
-			Test
+			<span className={styles.text}>{children}</span>
 		</label>
 	);
-}
+};
 
 export default Checkbox;

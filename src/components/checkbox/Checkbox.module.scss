@@ -7,9 +7,16 @@
 	margin-right: 4px;
 	border-radius: 4px;
 	clip: rect(0 0 0 0);
+	cursor: pointer;
 }
 
 .checkboxactive {
 	border-color: var(--blue-0);
 	background: var(--blue-0);
+}
+
+.container {
+	display: flex;
+	height: 24px;
+	cursor: pointer;
 }

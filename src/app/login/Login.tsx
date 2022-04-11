@@ -2,13 +2,14 @@ import styles from './Login.module.scss';
 import login from '../../assets/images/login.png';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
+import Logo from '../../components/logo/Logo';
 
 export const Login = () => {
 	return (
 		<div className={styles.container}>
 			<img src={login} className={styles.image} />
 			<div className={styles.rightBox}>
-				<div className={styles.logo}>join.tsh.io</div>
+				<Logo />
 				<div className={styles.loginContainer}>
 					<span className={styles.title}>Login</span>
 					<div className={styles.loginForm}>

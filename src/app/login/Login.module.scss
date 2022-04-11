@@ -12,18 +12,11 @@
 .rightBox {
 	display: flex;
 	flex-direction: column;
-	padding-left: 16px;
-	padding-right: 16px;
+	padding: 0 24px;
 	width: 100%;
 	@media (min-width: 1200px) {
 		margin-left: 235px;
 	}
-}
-
-.logo {
-	font-size: 24px;
-	color: var(--gray-400);
-	margin-top: 52px;
 }
 
 .loginContainer {
