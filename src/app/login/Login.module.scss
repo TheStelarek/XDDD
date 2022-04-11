@@ -27,7 +27,7 @@
 }
 
 .loginContainer {
-	margin-top: 235px;
+	margin-top: 103px;
 	@media (min-width: 1200px) {
 		margin-top: 235px;
 	}
@@ -63,4 +63,5 @@
 	color: var(--gray-300);
 	text-decoration: underline;
 	cursor: pointer;
+	font-size: 14px;
 }
