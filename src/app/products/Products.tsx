@@ -28,6 +28,7 @@ export const Products = () => {
 	const [isPromoItem, setIsPromoItem] = useState(false);
 	const [isActiveItem, setIsActiveItem] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const [searchInput, setSearchInput] = useState('');
 	const [product, setProduct] = useState<Product | null>(null);
 
 	useEffect(() => {
@@ -43,9 +44,7 @@ export const Products = () => {
 	}, []);
 
 	const searchItems = (e: string) => {
-		fetch(`https://join-tsh-api-staging.herokuapp.com/products?search=${e}`)
-			.then((result) => result.json())
-			.then((data) => setProducts(data.items));
+		setSearchInput(e);
 	};
 
 	const promoItems = () => {
@@ -61,13 +60,14 @@ export const Products = () => {
 			let url = `https://join-tsh-api-staging.herokuapp.com/products?`;
 			if (isActiveItem) url += `&active=${isActiveItem}`;
 			if (isPromoItem) url += `&promo=${isPromoItem}`;
+			if (searchInput.length != 0) url += `&search=${searchInput}`;
 
 			fetch(url)
 				.then((result) => result.json())
 				.then((data) => setProducts(data.items));
 		};
 		getData();
-	}, [isPromoItem, isActiveItem]);
+	}, [isPromoItem, isActiveItem, searchInput]);
 
 	const handleCloseModal = () => {
 		setIsOpen(false);
@@ -106,7 +106,11 @@ export const Products = () => {
 			<main className={styles.productsContainer}>
 				{product && (
 					<Modal handleClose={handleCloseModal} isOpen={isOpen}>
-						<span>{product.name}</span>
+						<img src={product.image} className={styles.modalImage} />
+						<div className={styles.productInfo}>
+							<h1 className={styles.productName}>{product.name}</h1>
+							<span className={styles.productDescription}>{product.description}</span>
+						</div>
 					</Modal>
 				)}
 				{products && (
