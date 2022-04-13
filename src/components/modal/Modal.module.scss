@@ -1,0 +1,23 @@
+.modal {
+	max-width: 600px;
+	max-height: 530px;
+	min-width: 250px;
+	min-height: 250px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--white);
+	border-radius: 8px;
+
+	.closeBtn {
+		border: none;
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		width: 32px;
+		height: 32px;
+		background-color: transparent;
+		cursor: pointer;
+	}
+}

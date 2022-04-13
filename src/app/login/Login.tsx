@@ -9,7 +9,9 @@ export const Login = () => {
 		<div className={styles.container}>
 			<img src={login} className={styles.image} />
 			<div className={styles.rightBox}>
-				<Logo />
+				<div className={styles.logoContainer}>
+					<Logo />
+				</div>
 				<div className={styles.loginContainer}>
 					<span className={styles.title}>Login</span>
 					<div className={styles.loginForm}>

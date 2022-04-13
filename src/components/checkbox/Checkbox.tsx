@@ -1,32 +1,26 @@
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import styles from './Checkbox.module.scss';
 import cx from 'classnames';
 
 interface CheckboxProps {
-	children?: React.ReactNode;
+	label: string;
+	value?: boolean;
+	onChange?: () => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ children }) => {
-	const [isChecked, setIsChecked] = useState(false);
-
+const Checkbox: React.FC<CheckboxProps> = ({ label, onChange, value }) => {
 	return (
 		<label className={styles.container}>
-			<input
-				type="checkbox"
-				hidden
-				onChange={() => {
-					setIsChecked(!isChecked);
-				}}
-			/>
+			<input type="checkbox" hidden onChange={onChange} checked={value} />
 			<svg
-				className={cx(styles.checkbox, isChecked && styles.checkboxactive)}
+				className={cx(styles.checkbox, value && styles.checkboxactive)}
 				aria-hidden="true"
 				viewBox="-5 2 24 5"
 				fill="none"
 			>
-				<path d="M1 4.5L5 9L13 0" strokeWidth="1.5" stroke={isChecked ? '#fff' : 'none'} />
+				<path d="M1 4.5L5 9L13 0" strokeWidth="1.5" stroke={value ? '#fff' : 'none'} />
 			</svg>
-			<span className={styles.text}>{children}</span>
+			<span className={styles.text}>{label}</span>
 		</label>
 	);
 };
