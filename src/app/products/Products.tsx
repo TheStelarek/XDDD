@@ -11,6 +11,7 @@ import { ReactComponent as Star } from '../../assets/icons/Star_border.svg';
 import { ReactComponent as Search } from '../../assets/icons/Shape.svg';
 import { ReactComponent as Empty } from '../../assets/icons/Group.svg';
 import Modal from '../../components/modal/Modal';
+import { useHistory } from 'react-router-dom';
 
 interface Product {
 	active: boolean;
@@ -30,6 +31,7 @@ export const Products = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchInput, setSearchInput] = useState('');
 	const [product, setProduct] = useState<Product | null>(null);
+	const history = useHistory();
 
 	useEffect(() => {
 		const getData = () => {
@@ -71,14 +73,17 @@ export const Products = () => {
 
 	const handleCloseModal = () => {
 		setIsOpen(false);
-
 		setProduct(null);
 	};
 
 	const handleOpenModal = (product: Product) => {
 		setIsOpen(true);
-
 		setProduct(product);
+	};
+
+	const routeChange = () => {
+		let path = 'Login';
+		history.push(path);
 	};
 
 	return (
@@ -100,7 +105,9 @@ export const Products = () => {
 					<Checkbox label={'Promo'} value={isPromoItem} onChange={() => promoItems()} />
 				</div>
 				<div className={styles.avatarContainer}>
-					<Avatar />
+					<Button variant="ghost-primary" onClick={routeChange}>
+						<span>Login</span>
+					</Button>
 				</div>
 			</div>
 			<main className={styles.productsContainer}>
@@ -149,7 +156,9 @@ export const Products = () => {
 				{products && products.length == 0 && (
 					<div className={styles.emptyContainer}>
 						{isLoading === false ? (
-							<Spinner />
+							<div className={styles.spinner}>
+								<Spinner />
+							</div>
 						) : (
 							<div className={styles.emptyWrapper}>
 								<Empty />
