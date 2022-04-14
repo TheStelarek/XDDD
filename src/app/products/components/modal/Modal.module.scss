@@ -1,0 +1,25 @@
+.modalImage {
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	height: 354px;
+	object-fit: cover;
+}
+
+.productInfo {
+	display: flex;
+	flex-direction: column;
+	padding: 24px 32px 56px 32px;
+
+	.productName {
+		font-size: 24px;
+		line-height: 40px;
+		color: var(--gray-400);
+	}
+
+	.productDescription {
+		margin-top: 8px;
+		font-size: 18px;
+		line-height: 24px;
+		color: var(--gray-300);
+	}
+}

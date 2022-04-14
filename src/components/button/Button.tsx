@@ -3,7 +3,7 @@ import cx from 'classnames';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
-	onClick?: () => any;
+	onClick?: () => void;
 	children?: React.ReactNode;
 	isDisabled?: boolean;
 	variant?: 'primary' | 'ghost-primary';

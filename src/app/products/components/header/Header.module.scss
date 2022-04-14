@@ -1,0 +1,64 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	background: var(--white);
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-bottom: 24px;
+
+	@media (min-width: 1000px) {
+		flex-direction: row;
+		margin-bottom: 0px;
+	}
+
+	@media (min-width: 1300px) {
+		margin-left: 108px;
+		flex-direction: row;
+	}
+
+	.logoContainer {
+		margin-top: 52px;
+	}
+
+	.searchContainer {
+		height: 48px;
+		margin-top: 28px;
+
+		@media (min-width: 1000px) {
+			margin-top: 48px;
+			margin-bottom: 48px;
+			margin-left: 104px;
+			width: 250px;
+		}
+
+		@media (min-width: 1200px) {
+			width: 392px;
+		}
+	}
+
+	.checkboxContainer {
+		display: flex;
+		flex-direction: row;
+		margin-top: 24px;
+		gap: 32px;
+		@media (min-width: 1000px) {
+			margin-left: 24px;
+			margin-top: 60px;
+		}
+	}
+
+	.avatarContainer {
+		margin-left: auto;
+		margin-top: 53px;
+		height: 38px;
+		width: 88px;
+		position: absolute;
+		right: 24px;
+		@media (min-width: 1000px) {
+			right: 54px;
+		}
+		@media (min-width: 1300px) {
+			right: 108px;
+		}
+	}
+}

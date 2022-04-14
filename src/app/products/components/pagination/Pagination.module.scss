@@ -1,0 +1,84 @@
+.paginationContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 56px;
+	font-size: 14px;
+
+	@media (min-width: 1000px) {
+		font-size: 16px;
+	}
+}
+.pagination {
+	display: flex;
+	list-style: none;
+	gap: 8px;
+	padding: 0px;
+	@media (min-width: 1000px) {
+		gap: 16px;
+	}
+}
+
+.pagination a {
+	padding: 0px;
+	border-radius: 5px;
+	color: var(--gray-400);
+	cursor: pointer;
+}
+
+.pagination__link {
+	font-weight: bold;
+}
+
+.pagination__linkActive a {
+	color: var(--blue-0);
+}
+
+.pagination__linkActive a {
+	color: var(--blue-0);
+}
+
+.previousClassName {
+	display: none;
+	visibility: hidden;
+	cursor: normal;
+}
+.nextClassName {
+	display: none;
+	visibility: hidden;
+}
+
+.lastPage {
+	margin-left: 15px;
+	line-height: 14px;
+	color: var(--gray-400);
+	cursor: pointer;
+	@media (min-width: 1000px) {
+		margin-left: 34px;
+	}
+}
+
+.lastPageDisable {
+	@extend .lastPage;
+	color: var(--gray-300);
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.firstPage {
+	line-height: 14px;
+	color: var(--gray-400);
+	cursor: pointer;
+	margin-right: 15px;
+	@media (min-width: 1000px) {
+		margin-right: 34px;
+	}
+}
+
+.firstPageDisable {
+	@extend .firstPage;
+	color: var(--gray-300);
+	cursor: not-allowed;
+	pointer-events: none;
+}
