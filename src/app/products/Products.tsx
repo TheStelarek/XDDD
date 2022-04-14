@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import { useHistory } from 'react-router-dom';
+import cx from 'classnames';
 import styles from './Products.module.scss';
 import Logo from '../../components/logo/Logo';
 import Input from '../../components/input/Input';
 import Checkbox from '../../components/checkbox/Checkbox';
 import Button from '../../components/button/Button';
-import Avatar from '../../components/avatar/Avatar';
 import Spinner from '../../components/spinner/Spinner';
 import { ReactComponent as FilledStar } from '../../assets/icons/Star.svg';
 import { ReactComponent as Star } from '../../assets/icons/Star_border.svg';
 import { ReactComponent as Search } from '../../assets/icons/Shape.svg';
 import { ReactComponent as Empty } from '../../assets/icons/Group.svg';
 import Modal from '../../components/modal/Modal';
-import { useHistory } from 'react-router-dom';
 
 interface Product {
 	active: boolean;
@@ -23,6 +24,8 @@ interface Product {
 	rating: number;
 }
 
+const perPage = 8;
+
 export const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +34,8 @@ export const Products = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchInput, setSearchInput] = useState('');
 	const [product, setProduct] = useState<Product | null>(null);
+	const [currentPage, setCurrentPage] = useState(0);
+
 	const history = useHistory();
 
 	useEffect(() => {
@@ -63,6 +68,7 @@ export const Products = () => {
 			if (isActiveItem) url += `&active=${isActiveItem}`;
 			if (isPromoItem) url += `&promo=${isPromoItem}`;
 			if (searchInput.length != 0) url += `&search=${searchInput}`;
+			setCurrentPage(0);
 
 			fetch(url)
 				.then((result) => result.json())
@@ -85,6 +91,22 @@ export const Products = () => {
 		let path = 'Login';
 		history.push(path);
 	};
+
+	const pageCount = Math.ceil(products.length / perPage);
+
+	const offset = currentPage * perPage;
+
+	function handlePageClick({ selected: selectedPage }: any) {
+		setCurrentPage(selectedPage);
+	}
+
+	function handleFirstPage() {
+		setCurrentPage(0);
+	}
+
+	function hangleLastPage() {
+		setCurrentPage(pageCount - 1);
+	}
 
 	return (
 		<div className={styles.container}>
@@ -122,7 +144,7 @@ export const Products = () => {
 				)}
 				{products && (
 					<ul className={styles.productsList}>
-						{products.map((product) => (
+						{products.slice(offset, offset + perPage).map((product) => (
 							<li key={product.id} className={styles.product}>
 								<div className={styles.productImage}>
 									<img className={styles.image} src={product.image} />
@@ -130,8 +152,10 @@ export const Products = () => {
 								</div>
 								<div className={styles.productInfo}>
 									{product.promo === true && <span className={styles.productPromo}>Promo</span>}
-									<p className={styles.productName}>{product.name}</p>
-									<p className={styles.productDescription}>{product.description}</p>
+									<div className={styles.productWrapper}>
+										<p className={styles.productName}>{product.name}</p>
+										<p className={styles.productDescription}>{product.description}</p>
+									</div>
 									<span className={styles.productRatingContainer}>
 										{[...Array(5)].map((_, index) => (
 											<label className={styles.stars} key={index}>
@@ -153,6 +177,37 @@ export const Products = () => {
 						))}
 					</ul>
 				)}
+
+				{isLoading === true && pageCount >= 2 && (
+					<div className={styles.paginationContainer}>
+						<a
+							className={cx(styles.firstPage, currentPage === 0 && styles.firstPageDisable)}
+							onClick={handleFirstPage}
+						>
+							First
+						</a>
+
+						<ReactPaginate
+							pageCount={pageCount}
+							onPageChange={handlePageClick}
+							className={styles.pagination}
+							activeClassName={styles.pagination__linkActive}
+							previousClassName={styles.previousClassName}
+							nextClassName={styles.nextClassName}
+							pageRangeDisplayed={2}
+							marginPagesDisplayed={3}
+							forcePage={currentPage}
+						/>
+
+						<span
+							onClick={hangleLastPage}
+							className={cx(styles.lastPage, currentPage === pageCount - 1 && styles.lastPageDisable)}
+						>
+							Last
+						</span>
+					</div>
+				)}
+
 				{products && products.length == 0 && (
 					<div className={styles.emptyContainer}>
 						{isLoading === false ? (
