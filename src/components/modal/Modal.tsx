@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Modal.module.scss';
-import RModal from 'react-modal';
 import { ReactComponent as Mark } from '../../assets/icons/Mark.svg';
+import RModal from 'react-modal';
+import styles from './Modal.module.scss';
 
 interface ModalProps {
 	isOpen: boolean;

@@ -1,30 +1,18 @@
-import styles from './ProductsList.module.scss';
+import Button from '../../../../components/button/Button';
 import { ReactComponent as FilledStar } from '../../../../assets/icons/Star.svg';
 import { ReactComponent as Star } from '../../../../assets/icons/Star_border.svg';
-import Button from '../../../../components/button/Button';
-import { MouseEventHandler } from 'react';
-
-interface Product {
-	active: boolean;
-	description: string;
-	id: number;
-	image: string;
-	name: string;
-	promo: boolean;
-	rating: number;
-}
+import styles from './ProductsList.module.scss';
+import { Product } from '../../../../types/Product';
 
 interface ProductsProps {
 	products: Product[];
-	offset: number;
-	perPage: number;
 	onClick: (product: Product) => void;
 }
 
-const ProductsList: React.FC<ProductsProps> = ({ products, offset, perPage, onClick }) => {
+const ProductsList: React.FC<ProductsProps> = ({ products, onClick }) => {
 	return (
 		<ul className={styles.productsList}>
-			{products.slice(offset, offset + perPage).map((product) => (
+			{products.map((product) => (
 				<li key={product.id} className={styles.product}>
 					<div className={styles.productImage}>
 						<img className={styles.image} src={product.image} />

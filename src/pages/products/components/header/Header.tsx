@@ -7,7 +7,6 @@ import Button from '../../../../components/button/Button';
 import { ChangeEventHandler } from 'react';
 
 interface HeaderProps {
-	currentPage: number;
 	onChangePromo: () => void;
 	onChangeActive: () => void;
 	onChangeSearch: ChangeEventHandler<HTMLInputElement>;

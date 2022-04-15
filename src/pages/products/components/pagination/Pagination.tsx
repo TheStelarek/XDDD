@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import styles from './Pagination.module.scss';
 import ReactPaginate from 'react-paginate';
+import styles from './Pagination.module.scss';
 
 interface IPagination {
 	currentPage: number;
@@ -35,12 +35,12 @@ const Pagination: React.FC<IPagination> = ({
 			forcePage={currentPage}
 		/>
 
-		<span
+		<a
 			onClick={handleLastPage}
 			className={cx(styles.lastPage, currentPage === pageCount - 1 && styles.lastPageDisable)}
 		>
 			Last
-		</span>
+		</a>
 	</div>
 );
 

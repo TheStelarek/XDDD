@@ -1,46 +1,40 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from './components/header/Header';
-import styles from './Products.module.scss';
 import RModal from './components/modal/Modal';
-import RSpinner from './components/spinner/Spinner';
 import ProductsList from './components/productsList/ProductsList';
 import Pagination from './components/pagination/Pagination';
-
-interface Product {
-	active: boolean;
-	description: string;
-	id: number;
-	image: string;
-	name: string;
-	promo: boolean;
-	rating: number;
-}
-
-const perPage = 8;
+import Spinner from '../../components/spinner/Spinner';
+import Empty from './components/empty/Empty';
+import styles from './Products.module.scss';
+import { Product } from '../../types/Product';
+import { Meta } from '../../types/Meta';
 
 export const Products = () => {
-	const [products, setProducts] = useState<Product[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [products, setProducts] = useState<Product[] | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 	const [isPromoItem, setIsPromoItem] = useState(false);
 	const [isActiveItem, setIsActiveItem] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchInput, setSearchInput] = useState('');
 	const [product, setProduct] = useState<Product | null>(null);
-	const [currentPage, setCurrentPage] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [meta, setMeta] = useState<Meta | null>(null);
 	const history = useHistory();
 
-	useEffect(() => {
-		const getData = () => {
-			fetch(`https://join-tsh-api-staging.herokuapp.com/products`)
-				.then((result) => result.json())
-				.then((data) => {
-					setProducts(data.items);
-					setIsLoading(true);
-				});
-		};
-		getData();
-	}, []);
+	const getData = () => {
+		let url = `https://join-tsh-api-staging.herokuapp.com/products?limit=8&page=${currentPage}`;
+		if (isActiveItem) url += `&active=${isActiveItem}`;
+		if (isPromoItem) url += `&promo=${isPromoItem}`;
+		if (searchInput.length != 0) url += `&search=${searchInput}`;
+		fetch(url)
+			.then((result) => result.json())
+			.then((data) => {
+				setProducts(data.items);
+				setIsLoading(false);
+				setMeta(data.meta);
+			});
+	};
 
 	const searchItems = (e: string) => {
 		setSearchInput(e);
@@ -53,20 +47,6 @@ export const Products = () => {
 	const activeItems = () => {
 		setIsActiveItem((state) => !state);
 	};
-
-	useEffect(() => {
-		const getData = () => {
-			let url = `https://join-tsh-api-staging.herokuapp.com/products?`;
-			if (isActiveItem) url += `&active=${isActiveItem}`;
-			if (isPromoItem) url += `&promo=${isPromoItem}`;
-			if (searchInput.length != 0) url += `&search=${searchInput}`;
-			setCurrentPage(0);
-			fetch(url)
-				.then((result) => result.json())
-				.then((data) => setProducts(data.items));
-		};
-		getData();
-	}, [isPromoItem, isActiveItem, searchInput]);
 
 	const handleCloseModal = () => {
 		setIsOpen(false);
@@ -83,26 +63,29 @@ export const Products = () => {
 		history.push(path);
 	};
 
-	const pageCount = Math.ceil(products.length / perPage);
+	const handlePageClick = ({ selected }: { selected: number }) => {
+		setCurrentPage(selected + 1);
+	};
 
-	const offset = currentPage * perPage;
+	const handleFirstPage = () => {
+		setCurrentPage(1);
+	};
 
-	function handlePageClick({ selected: selectedPage }: any) {
-		setCurrentPage(selectedPage);
-	}
+	const handleLastPage = async () => {
+		if (meta !== null) setCurrentPage(meta.totalPages);
+	};
 
-	function handleFirstPage() {
-		setCurrentPage(0);
-	}
+	useEffect(() => {
+		getData();
+	}, []);
 
-	function handleLastPage() {
-		setCurrentPage(pageCount - 1);
-	}
+	useEffect(() => {
+		getData();
+	}, [isPromoItem, isActiveItem, searchInput, currentPage]);
 
 	return (
 		<div className={styles.container}>
 			<Header
-				currentPage={currentPage}
 				onChangePromo={promoItems}
 				onChangeActive={activeItems}
 				onChangeSearch={(e) => searchItems(e.target.value)}
@@ -120,26 +103,27 @@ export const Products = () => {
 						description={product.description}
 					/>
 				)}
-				{products && (
-					<ProductsList
-						products={products}
-						offset={offset}
-						perPage={perPage}
-						onClick={(product) => handleOpenModal(product)}
-					/>
-				)}
+				{products && <ProductsList products={products} onClick={(product) => handleOpenModal(product)} />}
 
-				{isLoading === true && pageCount >= 2 && (
+				{meta && meta.totalPages >= 2 && (
 					<Pagination
-						currentPage={currentPage}
-						pageCount={pageCount}
+						currentPage={currentPage - 1}
+						pageCount={meta.totalPages}
 						handleLastPage={handleLastPage}
 						handleFirstPage={handleFirstPage}
 						handlePageClick={handlePageClick}
 					/>
 				)}
 
-				{products && products.length == 0 && <RSpinner isLoading={isLoading} />}
+				<div className={styles.emptyContainer}>
+					{isLoading && (
+						<div className={styles.spinner}>
+							<Spinner />
+						</div>
+					)}
+
+					{products && products.length === 0 && <Empty />}
+				</div>
 			</main>
 		</div>
 	);

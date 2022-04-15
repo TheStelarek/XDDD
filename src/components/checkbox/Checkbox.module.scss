@@ -1,29 +1,29 @@
-.checkbox {
-	display: flex;
-	height: 24px;
-	width: 24px;
-	background: white;
-	border: 1px solid #e0e2ea;
-	margin-right: 4px;
-	border-radius: 4px;
-	clip: rect(0 0 0 0);
-	cursor: pointer;
-	align-items: center;
-	line-height: 16px;
-	position: relative;
-}
-
-.checkboxactive {
-	border-color: var(--blue-0);
-	background: var(--blue-0);
-}
-
 .container {
 	display: flex;
 	height: 24px;
 	cursor: pointer;
-}
 
-.text {
-	margin-top: 2px;
+	.checkbox {
+		display: flex;
+		height: 24px;
+		width: 24px;
+		background: white;
+		border: 1px solid #e0e2ea;
+		margin-right: 4px;
+		border-radius: 4px;
+		clip: rect(0 0 0 0);
+		cursor: pointer;
+		align-items: center;
+		line-height: 16px;
+		position: relative;
+	}
+
+	.checkboxactive {
+		border-color: var(--blue-0);
+		background: var(--blue-0);
+	}
+
+	.text {
+		margin-top: 2px;
+	}
 }

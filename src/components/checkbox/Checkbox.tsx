@@ -1,6 +1,5 @@
-import { ChangeEventHandler, useState } from 'react';
-import styles from './Checkbox.module.scss';
 import cx from 'classnames';
+import styles from './Checkbox.module.scss';
 
 interface CheckboxProps {
 	label: string;

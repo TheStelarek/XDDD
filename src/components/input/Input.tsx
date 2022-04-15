@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, ReactElement } from 'react';
-import styles from './Input.module.scss';
 import cx from 'classnames';
+import styles from './Input.module.scss';
 
 interface InputProps {
 	id: string;
@@ -12,7 +12,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({ id, label, placeholder, hasIcon, type, onChange }) => (
-	<label htmlFor={id} className={styles.label}>
+	<label htmlFor={id}>
 		{label && label}
 		<div className={styles.wrapper}>
 			<input
