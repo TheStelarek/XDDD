@@ -19,7 +19,11 @@ const Pagination: React.FC<IPagination> = ({
 	handleLastPage,
 }) => (
 	<div className={styles.paginationContainer}>
-		<a className={cx(styles.firstPage, currentPage === 0 && styles.firstPageDisable)} onClick={handleFirstPage}>
+		<a
+			role="first"
+			className={cx(styles.firstPage, currentPage === 0 && styles.firstPageDisable)}
+			onClick={handleFirstPage}
+		>
 			First
 		</a>
 
@@ -36,6 +40,7 @@ const Pagination: React.FC<IPagination> = ({
 		/>
 
 		<a
+			role="last"
 			onClick={handleLastPage}
 			className={cx(styles.lastPage, currentPage === pageCount - 1 && styles.lastPageDisable)}
 		>

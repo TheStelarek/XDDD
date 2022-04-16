@@ -101,6 +101,7 @@ export const Products = () => {
 						isOpen={isOpen}
 						name={product.name}
 						description={product.description}
+						alt={product.name}
 					/>
 				)}
 				{products && <ProductsList products={products} onClick={(product) => handleOpenModal(product)} />}

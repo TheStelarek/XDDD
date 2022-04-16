@@ -7,12 +7,13 @@ interface ModalProps {
 	image: string;
 	name: React.ReactNode;
 	description: React.ReactNode;
+	alt: string;
 }
 
-const RModal: React.FC<ModalProps> = ({ isOpen, handleCloseModal, image, name, description }) => {
+const RModal: React.FC<ModalProps> = ({ isOpen, handleCloseModal, image, name, description, alt }) => {
 	return (
 		<Modal handleClose={handleCloseModal} isOpen={isOpen}>
-			<img src={image} className={styles.modalImage} />
+			<img src={image} className={styles.modalImage} alt={alt} />
 			<div className={styles.productInfo}>
 				<h1 className={styles.productName}>{name}</h1>
 				<span className={styles.productDescription}>{description}</span>

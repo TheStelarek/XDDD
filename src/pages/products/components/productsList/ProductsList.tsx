@@ -15,7 +15,7 @@ const ProductsList: React.FC<ProductsProps> = ({ products, onClick }) => {
 			{products.map((product) => (
 				<li key={product.id} className={styles.product}>
 					<div className={styles.productImage}>
-						<img className={styles.image} src={product.image} />
+						<img className={styles.image} src={product.image} alt={product.name} />
 						{!product.active && <div className={styles.productOverlay} />}
 					</div>
 					<div className={styles.productInfo}>

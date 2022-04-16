@@ -17,7 +17,7 @@ const customStyles = {
 const Modal: React.FC<ModalProps> = ({ children, handleClose, isOpen }) => {
 	return (
 		<RModal className={styles.modal} style={customStyles} isOpen={isOpen} onRequestClose={handleClose}>
-			<button className={styles.closeBtn} onClick={handleClose}>
+			<button role="Close" className={styles.closeBtn} onClick={handleClose}>
 				<Mark />
 			</button>
 			{children}
