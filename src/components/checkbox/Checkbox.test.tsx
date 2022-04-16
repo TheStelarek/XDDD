@@ -6,7 +6,7 @@ describe('Checkbox', () => {
 		const { getByLabelText } = render(<Checkbox label="text" />);
 		expect(getByLabelText('text')).toBeInTheDocument();
 	});
-	test('test change state ', () => {
+	test('Test change state ', () => {
 		const handleChange = jest.fn();
 
 		const { getByLabelText } = render(<Checkbox label="text" onChange={handleChange} />);

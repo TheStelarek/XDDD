@@ -6,7 +6,7 @@ import ReactModal from 'react-modal';
 ReactModal.setAppElement(document.createElement('div'));
 
 describe('Modal', () => {
-	test('can be display and close', () => {
+	test('Display modal and test', () => {
 		const handleClose = jest.fn();
 
 		const { getByRole } = render(<Modal isOpen={true} handleClose={handleClose} />);

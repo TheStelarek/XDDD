@@ -6,7 +6,7 @@ context('Home page - Products', () => {
 	});
 
 	it('Display products', () => {
-		cy.wait(1000);
+		cy.wait(500);
 		cy.get('main > ul > li').should('length', 8);
 	});
 
@@ -27,7 +27,7 @@ context('Home page - Products', () => {
 
 	it('Filter products by Search', () => {
 		cy.get('input[placeholder="Search"]').type('pizza');
-		cy.wait(1000);
+		cy.wait(500);
 		cy.get('main > ul > li').should('not.be.empty');
 	});
 
@@ -44,13 +44,13 @@ context('Home page - Products', () => {
 		cy.get('main > ul > li').find('span').contains('Promo').should('exist');
 		cy.get('main > ul > li').find('button').contains('Unavailable').should('not.exist');
 		cy.get('input[placeholder="Search"]').type('pizza');
-		cy.wait(1000);
+		cy.wait(500);
 		cy.get('main > ul > li').should('not.be.empty');
 	});
 
 	it('Show empty list info if no products', () => {
 		cy.get('input[placeholder="Search"]').type('qwertyuiop');
-		cy.wait(1000);
+		cy.wait(500);
 		cy.get('span').contains(/There are no products on the list/);
 	});
 
