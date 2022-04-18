@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import Button from './Button';
 
 describe('Button', () => {
-	test('Button with correct text ', () => {
+	test('Display button with correct text ', () => {
 		const { getByText } = render(<Button> text</Button>);
 		expect(getByText('text')).toBeInTheDocument();
 	});

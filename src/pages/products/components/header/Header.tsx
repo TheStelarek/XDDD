@@ -1,10 +1,11 @@
-import styles from './Header.module.scss';
+import { ChangeEventHandler } from 'react';
 import Checkbox from '../../../../components/checkbox/Checkbox';
 import Logo from '../../../../components/logo/Logo';
 import Input from '../../../../components/input/Input';
-import { ReactComponent as Search } from '../../../../assets/icons/Shape.svg';
 import Button from '../../../../components/button/Button';
-import { ChangeEventHandler } from 'react';
+import { ReactComponent as Search } from '../../../../assets/icons/Shape.svg';
+
+import styles from './Header.module.scss';
 
 interface HeaderProps {
 	onChangePromo: () => void;

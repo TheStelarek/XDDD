@@ -1,8 +1,8 @@
 import Button from '../../../../components/button/Button';
 import { ReactComponent as FilledStar } from '../../../../assets/icons/Star.svg';
 import { ReactComponent as Star } from '../../../../assets/icons/Star_border.svg';
-import styles from './ProductsList.module.scss';
 import { Product } from '../../../../types/Product';
+import styles from './ProductsList.module.scss';
 
 interface ProductsProps {
 	products: Product[];
