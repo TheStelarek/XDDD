@@ -4,7 +4,6 @@ import Logo from '../../../../components/logo/Logo';
 import Input from '../../../../components/input/Input';
 import Button from '../../../../components/button/Button';
 import { ReactComponent as Search } from '../../../../assets/icons/Shape.svg';
-
 import styles from './Header.module.scss';
 
 interface HeaderProps {

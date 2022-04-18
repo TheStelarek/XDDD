@@ -6,9 +6,9 @@ import ProductsList from './components/productsList/ProductsList';
 import Pagination from './components/pagination/Pagination';
 import Spinner from '../../components/spinner/Spinner';
 import Empty from './components/empty/Empty';
-import styles from './Products.module.scss';
 import { Product } from '../../types/Product';
 import { Meta } from '../../types/Meta';
+import styles from './Products.module.scss';
 
 export const Products = () => {
 	const [products, setProducts] = useState<Product[] | null>(null);
