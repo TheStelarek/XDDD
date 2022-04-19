@@ -4,6 +4,7 @@
 	background: var(--white);
 	margin-left: 24px;
 	margin-right: 24px;
+	max-width: 1920px;
 
 	@media (min-width: 1000px) {
 		flex-direction: row;
