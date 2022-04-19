@@ -13,7 +13,7 @@ describe('Input', () => {
 		expect(getByPlaceholderText('text')).toBeInTheDocument();
 	});
 
-	test('test onChange event ', () => {
+	test('Test onChange event ', () => {
 		const { getByPlaceholderText } = render(<Component />);
 		const nameInput = getByPlaceholderText('text') as HTMLInputElement;
 		fireEvent.change(nameInput, { target: { value: 'test' } });
