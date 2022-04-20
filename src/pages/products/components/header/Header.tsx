@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({
 	routeChange,
 }) => {
 	return (
-		<>
+		<div className={styles.headerContainer}>
 			<div className={styles.header}>
 				<div className={styles.logoContainer}>
 					<Logo />
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
 					</Button>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
