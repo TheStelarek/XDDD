@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
 					<Checkbox label={'Active'} value={isActiveItem} onChange={onChangeActive} />
 					<Checkbox label={'Promo'} value={isPromoItem} onChange={onChangePromo} />
 				</div>
-				<div className={styles.avatarContainer}>
+				<div className={styles.loginContainer}>
 					<Button variant="ghost-primary" onClick={routeChange}>
 						<span>Login</span>
 					</Button>
