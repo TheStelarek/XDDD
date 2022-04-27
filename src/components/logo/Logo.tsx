@@ -5,7 +5,7 @@ import styles from './Logo.module.scss';
 const Logo = () => {
 	return (
 		<Link to={AppRoute.Home} className={styles.logo}>
-			join.tsh.io
+			Products
 		</Link>
 	);
 };
